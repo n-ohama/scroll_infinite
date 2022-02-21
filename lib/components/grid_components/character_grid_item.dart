@@ -3,14 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:scroll_infinite/character_summary.dart';
 
 class CharacterGridItem extends StatelessWidget {
-  const CharacterGridItem({
-    required this.character,
-    Key? key,
-  }) : super(key: key);
+  const CharacterGridItem({ required this.character, Key? key }) : super(key: key);
   final CharacterSummary character;
 
   @override
   Widget build(BuildContext context) => CachedNetworkImage(
     imageUrl: character.pictureUrl,
+    imageBuilder: (_, imageProvider) => Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: imageProvider,
+          fit: BoxFit.cover,
+        )
+      ),
+    ),
   );
 }
